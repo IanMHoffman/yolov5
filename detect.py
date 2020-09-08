@@ -175,7 +175,7 @@ if __name__ == '__main__':
             detect()
 
     path = Path(r'/content/yolov5/inference/output')
-    img_path = Path(r'/content/uprights384/images/train')
+    img_path = Path(r'R:\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\15.2238.000 Main IDIQ\Auto Fill Testing\Section001J\ReferencedImages') # path to the originals to crop off of
     print(path)
 
     if not os.path.exists((path.joinpath("cropped"))):
@@ -238,3 +238,5 @@ if __name__ == '__main__':
             #cv2.waitKey(0)
 
             cv2.imwrite(str(cropped_path.joinpath(str(biggest[5]) + '.jpg')) , cropped)
+
+# python detect.py --weights C:\YOLOv5\yolov5\weights\last.pt --conf 0.4 --save-txt --source R:\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\15.2238.000 Main IDIQ\Auto Fill Testing\Section001J\ReferencedImages
