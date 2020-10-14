@@ -166,6 +166,8 @@ if __name__ == '__main__':
     opt = parser.parse_args()
     print(opt)
 
+    start_time = time.time()
+
     with torch.no_grad():
         if opt.update:  # update all models (to fix SourceChangeWarning)
             for opt.weights in ['yolov5s.pt', 'yolov5m.pt', 'yolov5l.pt', 'yolov5x.pt']:
@@ -174,8 +176,10 @@ if __name__ == '__main__':
         else:
             detect()
 
-    path = Path(r'/content/yolov5/inference/output')
-    img_path = Path(r'R:\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\15.2238.000 Main IDIQ\Auto Fill Testing\Section001J\ReferencedImages') # path to the originals to crop off of
+    path = Path(r'C:\YOLOv5\yolov5\inference\output')
+
+    img_path = Path(r'\\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.083 Ohio Western Reserve National Cemetery\Data\Section017\HoldingImages\17.1\17.1-SPLIT-B') # path to the originals to crop off of
+
     print(path)
 
     if not os.path.exists((path.joinpath("cropped"))):
@@ -213,8 +217,8 @@ if __name__ == '__main__':
 
             #cv2.imshow("original", img) # show the original
             #v2.waitKey(0) # wait until we press a key
-
-            padding = 50
+            #print(biggest)
+            padding = 30
 
             x_start = x_cen - int(width / 2) - padding
             x_end = x_cen + int(width / 2) + padding
@@ -239,4 +243,7 @@ if __name__ == '__main__':
 
             cv2.imwrite(str(cropped_path.joinpath(str(biggest[5]) + '.jpg')) , cropped)
 
+            #print((time.time() - start_time))
+
 # python detect.py --weights C:\YOLOv5\yolov5\weights\last.pt --conf 0.4 --save-txt --source R:\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\15.2238.000 Main IDIQ\Auto Fill Testing\Section001J\ReferencedImages
+# C:\YOLOv5\yolov5\Scripts\python.exe C:\YOLOv5\yolov5\detect.py --weights C:\YOLOv5\yolov5\weights\last.pt --conf 0.4 --save-txt --source 'C:\Users\ian.hoffman\Documents\Section01PP\HoldingImages\1PP-SPLIT-B'
