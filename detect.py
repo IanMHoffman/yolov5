@@ -196,7 +196,10 @@ if __name__ == '__main__':
                 return False
             return True
 
-    for file in path.glob('*.txt'):
+    # Find all of the text files that were detected
+    detectList = list(path.glob( '*.txt' ))
+
+    for file in detectList:
         with file.open() as f:
             biggest = (0,0,0,0,0)
 
@@ -241,11 +244,21 @@ if __name__ == '__main__':
             cropped = img[y_start:y_end, x_start:x_end].copy() # y,x
             #cv2.imshow("cropped", cropped)
             #cv2.waitKey(0)
+            
+            desiredWidth = 1200
 
-            cv2.imwrite(str(cropped_path.joinpath(str(biggest[5]) + '.jpg')) , cropped)
+            scale_percent = int((100 * desiredWidth) / cropped.shape[1]) # percent of original size
+            scaledWidth = int(cropped.shape[1] * scale_percent / 100)
+            scaledHeight = int(cropped.shape[0] * scale_percent / 100)
+            dim = (width, height)
+            # resize image
+            resized = cv2.resize(cropped, dim, interpolation = cv2.INTER_AREA)
+
+            cv2.imwrite(str(cropped_path.joinpath(str(biggest[5]) + '.jpg')) , resized)
 
             #print((time.time() - start_time))
     
+    # Find all of the cropped images and move them
     croppedList = list(cropped_path.glob( '*.jpg' ))
 
     for croppedImg in croppedList:
