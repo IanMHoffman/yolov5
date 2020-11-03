@@ -1,5 +1,6 @@
 import argparse
 import os
+import re
 import platform
 import shutil
 import time
@@ -153,7 +154,7 @@ if __name__ == '__main__':
 
     # Creates a new folder for the output so multiple instances can be run at once
     folder_time = str(time.strftime("%a-%d-%b-%Y-%H-%M-%S")) # Mon-1-Jan-2020-00-00-00
-    output_folder = r'\output-' + folder_time # returns time as an integer number of nanoseconds since the epoch
+    output_folder = r'\output-' + folder_time
     output_path = r'C:\YOLOv5\yolov5\inference' + output_folder
     print("Output Folder: " + output_path)
 
@@ -203,10 +204,25 @@ if __name__ == '__main__':
                 return False
             return True
 
+    
+    # Find the root path of the Section
+    sectionPath = img_path
+    while re.match(r'Section', sectionPath.stem, re.IGNORECASE) is None:
+        sectionPath = sectionPath.parent
+    # Join Referenced Images to Section root path
+    referencedPath = sectionPath.joinpath("ReferencedImages")
+
+     # Find all of the original images and copy them to referenced
+    origList = list(img_path.glob( '*.jpg' ))
+
+    # Copies the original images to referenced images overwriting the existing files
+    for original in tqdm.tqdm(origList, desc="Copying Holding to Referenced"):
+        shutil.copy(Path(original), referencedPath)
+
     # Find all of the text files that were detected
     detectList = list(path.glob( '*.txt' ))
 
-    for file in tqdm.tqdm(detectList):
+    for file in tqdm.tqdm(detectList, desc="Cropping, Resizing & Saving Images"):
         with file.open() as f:
             biggest = (0,0,0,0,0)
 
@@ -283,7 +299,7 @@ if __name__ == '__main__':
     croppedList = list(cropped_path.glob( '*.jpg' ))
 
     # Copies the processed images to the original location overwriting the existing files
-    for croppedImg in tqdm.tqdm(croppedList):
+    for croppedImg in tqdm.tqdm(croppedList, desc="Copying Processed Images to Holding"):
         shutil.copy(Path(croppedImg), img_path)
 
     # Delete the folder that was just created to hold images
