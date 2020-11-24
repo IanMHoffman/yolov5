@@ -1,9 +1,11 @@
 import argparse
 import os
+import re
 import platform
 import shutil
 import time
 import sys
+import tqdm
 import glob
 from pathlib import Path
 
@@ -149,10 +151,17 @@ def detect(save_img=False):
 
 
 if __name__ == '__main__':
+
+    # Creates a new folder for the output so multiple instances can be run at once
+    folder_time = str(time.strftime("%a-%d-%b-%Y-%H-%M-%S")) # Mon-1-Jan-2020-00-00-00
+    output_folder = r'\output-' + folder_time # returns time as an integer number of nanoseconds since the epoch
+    output_path = r'C:\YOLOv5\yolov5\inference' + output_folder
+    print("Output Folder: " + output_path)
+
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str, default=r'C:\YOLOv5\yolov5\weights\last.pt', help='model.pt path(s)') # defaults to trained weights
     parser.add_argument('--source', type=str, default='inference/images', help='source')  # file/folder, 0 for webcam
-    parser.add_argument('--output', type=str, default=r'C:\YOLOv5\yolov5\inference/output', help='output folder')  # output folder
+    parser.add_argument('--output', type=str, default=output_path, help='output folder')  # output folder
     parser.add_argument('--img-size', type=int, default=640, help='inference size (pixels)')
     parser.add_argument('--conf-thres', type=float, default=0.4, help='object confidence threshold')
     parser.add_argument('--iou-thres', type=float, default=0.5, help='IOU threshold for NMS')
@@ -176,10 +185,9 @@ if __name__ == '__main__':
         else:
             detect()
 
-    path = Path(r'C:\YOLOv5\yolov5\inference\output')
+    path = Path(output_path)
 
     img_path = Path(opt.source)
-    #img_path = Path(r'\\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.083 Ohio Western Reserve National Cemetery\Data\Section010\HoldingImages\10.5\10.5-SPLIT-C') # path to the originals to crop off of
 
     print(path)
 
@@ -196,10 +204,25 @@ if __name__ == '__main__':
                 return False
             return True
 
+    
+    # Find the root path of the Section
+    sectionPath = img_path
+    while re.match(r'Section', sectionPath.stem, re.IGNORECASE) is None:
+        sectionPath = sectionPath.parent
+    # Join Referenced Images to Section root path
+    referencedPath = sectionPath.joinpath("ReferencedImages")
+
+     # Find all of the original images and copy them to referenced
+    origList = list(img_path.glob( '*.jpg' ))
+
+    # Copies the original images to referenced images overwriting the existing files
+    for original in tqdm.tqdm(origList, desc="Copying Holding to Referenced"):
+        shutil.copy(Path(original), referencedPath)
+
     # Find all of the text files that were detected
     detectList = list(path.glob( '*.txt' ))
 
-    for file in detectList:
+    for file in tqdm.tqdm(detectList, desc="Cropping, Resizing & Saving Images"):
         with file.open() as f:
             biggest = (0,0,0,0,0)
 
@@ -219,17 +242,15 @@ if __name__ == '__main__':
             width = int(biggest[3] * dimensions[1]) # normalized width * image width
             height = int(biggest[4] * dimensions[0]) # normalized height * image height
 
-            #cv2.imshow("original", img) # show the original
-            #v2.waitKey(0) # wait until we press a key
-            #print(biggest)
+            # This is the border around the image in pixels after the crop
             padding = 30
+            botttom_padding =  30
 
             x_start = x_cen - int(width / 2) - padding
             x_end = x_cen + int(width / 2) + padding
 
-            y_start = y_cen - int(height / 2) - padding
-            y_end = y_cen + int(height / 2) + padding
-
+            y_start = y_cen - int(height / 2) - padding 
+            y_end = y_cen + int(height / 2) + padding + botttom_padding
 
             if x_start < 0:
                 x_start = 0
@@ -240,29 +261,49 @@ if __name__ == '__main__':
             if y_end > dimensions[0]:
                 y_end = dimensions[0] - 1
 
-
             cropped = img[y_start:y_end, x_start:x_end].copy() # y,x
-            #cv2.imshow("cropped", cropped)
-            #cv2.waitKey(0)
-            
-            desiredWidth = 1200
 
-            scale_percent = int((100 * desiredWidth) / cropped.shape[1]) # percent of original size
-            scaledWidth = int(cropped.shape[1] * scale_percent / 100)
-            scaledHeight = int(cropped.shape[0] * scale_percent / 100)
-            dim = (width, height)
+            #cv2.imwrite(str(cropped_path.joinpath(str(biggest[5]) + '.jpg')) , cropped)
+
+            # default export horizontal (x axis) size that gets the jpegs into the required 300-600kb range
+            desiredWidth = 1300
+            scale_percent = int( desiredWidth / cropped.shape[1]) # percent of original width size
             # resize image
-            resized = cv2.resize(cropped, dim, interpolation = cv2.INTER_AREA)
+            resized = cv2.resize(cropped, None, fx=scale_percent, fy=scale_percent, interpolation = cv2.INTER_AREA)
 
-            cv2.imwrite(str(cropped_path.joinpath(str(biggest[5]) + '.jpg')) , resized)
+            resized_path = str(cropped_path.joinpath(str(biggest[5]) + '.jpg'))
 
-            #print((time.time() - start_time))
+            # default export quality that gets the jpegs into the required 300-600kb range
+            export_quality = 90
+
+            cv2.imwrite(resized_path, resized, [int(cv2.IMWRITE_JPEG_QUALITY), export_quality])
+
+            # if the files are to smaller than 400kb (400,000b) make them bigger
+            while os.stat(resized_path).st_size < 400000: # setting to 300kb creates files that are 262kb
+                if export_quality >= 100:
+                    desiredWidth = desiredWidth + 100
+                    scale_percent = int( desiredWidth / cropped.shape[1]) # percent of original width size
+                    resized = cv2.resize(cropped, None, fx=scale_percent, fy=scale_percent, interpolation = cv2.INTER_AREA)
+                export_quality = export_quality + 1
+                cv2.imwrite(resized_path, resized, [int(cv2.IMWRITE_JPEG_QUALITY), export_quality])
+            
+            # if the files are to bigger than 600kb (600,000b) make them smaller
+            while os.stat(resized_path).st_size > 600000:
+                if export_quality <= 80:
+                    desiredWidth = desiredWidth - 100
+                    scale_percent = int( desiredWidth / cropped.shape[1]) # percent of original width size
+                    resized = cv2.resize(cropped, None, fx=scale_percent, fy=scale_percent, interpolation = cv2.INTER_AREA)
+                export_quality = export_quality - 1
+                cv2.imwrite(resized_path, resized, [int(cv2.IMWRITE_JPEG_QUALITY), export_quality])
     
     # Find all of the cropped images and move them
     croppedList = list(cropped_path.glob( '*.jpg' ))
 
-    for croppedImg in croppedList:
+    # Copies the processed images to the original location overwriting the existing files
+    for croppedImg in tqdm.tqdm(croppedList, desc="Copying Processed Images to Holding"):
         shutil.copy(Path(croppedImg), img_path)
 
-# python detect.py --weights C:\YOLOv5\yolov5\weights\last.pt --conf 0.4 --save-txt --source R:\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\15.2238.000 Main IDIQ\Auto Fill Testing\Section001J\ReferencedImages
-# C:\YOLOv5\yolov5\Scripts\python.exe C:\YOLOv5\yolov5\detect.py --weights C:\YOLOv5\yolov5\weights\last.pt --conf 0.4 --save-txt --source 'C:\Users\ian.hoffman\Documents\Section01PP\HoldingImages\1PP-SPLIT-B'
+    # Delete the folder that was just created to hold images
+    shutil.rmtree(output_path)
+
+# C:\YOLOv5\yolov5\Scripts\python.exe C:\YOLOv5\yolov5\detect.py --source 'Section0'

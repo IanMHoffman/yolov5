@@ -1,0 +1,164 @@
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\YOLOv5\yolov5\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.contrib.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\YOLOv5\yolov5\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\YOLOv5\yolov5\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\YOLOv5\yolov5\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 41, in <module>
+    "file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth"
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/profile?alt=json
+INFO:oauth2client.transport:Refreshing due to a 401 (attempt 1/2)
+INFO:oauth2client.client:Refreshing access_token
+INFO:root:Succesfully initializing email connection.
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175955d8d3a1b5e4?alt=json
+INFO:root:New Unread Autocropping Task from: Robin.Miller@fourfrontdesign.com Recieved at 2020-11-04 15:25:36
+INFO:root:Section to autocrop: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section028\HoldingImages\28-SPLIT-B
+INFO:root:Assigned task number: 0
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Placed In Queue!
+Body: Your request to process: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section028\HoldingImages\28-SPLIT-B 
+ Task has been placed in the queue. 
+ You will be emailed when it completes.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/threads/175955d8d3a1b5e4/modify?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175955c74c8c5f47?alt=json
+INFO:root:New Unread Autocropping Task from: Robin.Miller@fourfrontdesign.com Recieved at 2020-11-04 15:24:24
+INFO:root:Section to autocrop: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section007\HoldingImages\7.2
+INFO:root:Assigned task number: 1
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Placed In Queue!
+Body: Your request to process: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section007\HoldingImages\7.2 
+ Task has been placed in the queue. 
+ You will be emailed when it completes.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/threads/175955c74c8c5f47/modify?alt=json
+INFO:root:Autocropping: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section028\HoldingImages\28-SPLIT-B
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Has Completed Succesfully!
+Body: Section: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section028\HoldingImages\28-SPLIT-B 
+ Has completed succesfully. 
+ If you have additional items in the queue you will be emailed separately.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+INFO:root:Autocropping: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section007\HoldingImages\7.2
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Has Completed Succesfully!
+Body: Section: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section007\HoldingImages\7.2 
+ Has completed succesfully. 
+ If you have additional items in the queue you will be emailed separately.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1759587ce2f518ff?alt=json
+INFO:root:New Unread Autocropping Task from: Robin.Miller@fourfrontdesign.com Recieved at 2020-11-04 16:11:44
+INFO:root:Section to autocrop: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section05I\HoldingImages\5I Uprights
+INFO:root:Assigned task number: 2
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Placed In Queue!
+Body: Your request to process: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section05I\HoldingImages\5I Uprights 
+ Task has been placed in the queue. 
+ You will be emailed when it completes.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/threads/1759587ce2f518ff/modify?alt=json
+INFO:root:Autocropping: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section05I\HoldingImages\5I Uprights
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Has Completed Succesfully!
+Body: Section: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section05I\HoldingImages\5I Uprights 
+ Has completed succesfully. 
+ If you have additional items in the queue you will be emailed separately.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175958f1d55f0082?alt=json
+INFO:root:New Unread Autocropping Task from: Robin.Miller@fourfrontdesign.com Recieved at 2020-11-04 16:19:43
+INFO:root:Section to autocrop: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section009\HoldingImages\9-SPLIT-B
+INFO:root:Assigned task number: 3
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Placed In Queue!
+Body: Your request to process: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section009\HoldingImages\9-SPLIT-B 
+ Task has been placed in the queue. 
+ You will be emailed when it completes.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/threads/175958f1d55f0082/modify?alt=json
+INFO:root:Autocropping: \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section009\HoldingImages\9-SPLIT-B
+INFO:root:Atempting to send email.
+Recipient: Robin.Miller@fourfrontdesign.com
+Subject: Task Has Completed Succesfully!
+Body: Section: 
+ \\FFDQNAP\GISProject\15-2238 USDVA SAC IDIQ for AE Services for GIS-GPS Surveys of NCs\OPY3\15.2238.072 Wood National Cemetery\Data\Section009\HoldingImages\9-SPLIT-B 
+ Has completed succesfully. 
+ If you have additional items in the queue you will be emailed separately.
+DEBUG:googleapiclient.discovery:URL being requested: POST https://gmail.googleapis.com/gmail/v1/users/me/messages/send?alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+INFO:oauth2client.transport:Refreshing due to a 401 (attempt 1/2)
+INFO:oauth2client.client:Refreshing access_token
