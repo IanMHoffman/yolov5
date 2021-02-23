@@ -1,0 +1,144 @@
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.contrib.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 40, in <module>
+    raise ImportError(
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/profile?alt=json
+INFO:root:Succesfully initializing email connection.
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.contrib.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 40, in <module>
+    raise ImportError(
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/profile?alt=json
+INFO:root:Succesfully initializing email connection.
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/177935b5add8b517?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/17774fe2a0f508f4?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1774fbd82afccc08?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/176d9da57fbdd65c?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/176a99d1be2e01d4?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1765176c03a454be?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1764dd7db1a2d3d6?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1763eee49518aaee?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1762a785a755f23e?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1761ccd92d313b04?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175dca840c95f5b3?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175dbe8adf11fd7d?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175b7d7f01835da3?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175a45ce7a99b047?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.contrib.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 40, in <module>
+    raise ImportError(
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/profile?alt=json
+INFO:root:Succesfully initializing email connection.
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/177935b5add8b517?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/17774fe2a0f508f4?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1774fbd82afccc08?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/176d9da57fbdd65c?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/176a99d1be2e01d4?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1765176c03a454be?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1764dd7db1a2d3d6?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1763eee49518aaee?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1762a785a755f23e?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1761ccd92d313b04?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175dca840c95f5b3?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175dbe8adf11fd7d?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175b7d7f01835da3?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175a45ce7a99b047?alt=json
+WARNING:googleapiclient.discovery_cache:file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 33, in <module>
+    from oauth2client.contrib.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.contrib.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 37, in <module>
+    from oauth2client.locked_file import LockedFile
+ModuleNotFoundError: No module named 'oauth2client.locked_file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\__init__.py", line 44, in autodetect
+    from . import file_cache
+  File "C:\Users\ian.hoffman\AppData\Local\Programs\Python\Python38\lib\site-packages\googleapiclient\discovery_cache\file_cache.py", line 40, in <module>
+    raise ImportError(
+ImportError: file_cache is unavailable when using oauth2client >= 4.0.0 or google-auth
+DEBUG:googleapiclient.discovery:URL being requested: GET https://www.googleapis.com/discovery/v1/apis/gmail/v1/rest
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/profile?alt=json
+INFO:root:Succesfully initializing email connection.
+INFO:root:Checking for new unread emails.
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads?q=label%3AUNREAD&maxResults=25&alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/177935b5add8b517?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/17774fe2a0f508f4?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1774fbd82afccc08?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/176d9da57fbdd65c?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/176a99d1be2e01d4?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1765176c03a454be?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1764dd7db1a2d3d6?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1763eee49518aaee?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1762a785a755f23e?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/1761ccd92d313b04?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175dca840c95f5b3?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175dbe8adf11fd7d?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175b7d7f01835da3?alt=json
+DEBUG:googleapiclient.discovery:URL being requested: GET https://gmail.googleapis.com/gmail/v1/users/me/threads/175a45ce7a99b047?alt=json

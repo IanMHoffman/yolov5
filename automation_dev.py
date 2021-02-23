@@ -1,7 +1,6 @@
 from collections import defaultdict
-from threading import Thread
+from detect_dev import *
 from pathlib import Path
-from queue import Queue
 import subprocess
 import ezgmail 
 import logging 
@@ -31,46 +30,17 @@ def init_enviroment():
     
 def init_ezgmail():
     print("Initialing email connection...")
-    # Path to the gmail account API JSON credentials file
+    # Path to the gmail account API JSON file
     os.chdir(r'C:\YOLOv5\yolov5\Email Automation\Credentials')
     # Initialize the mail client with JSON credentials
     ezgmail.init()
     logging.info("Succesfully initializing email connection.")
-    print("Succesfully initializing email connection." + "\n")
-
-def check_inbox():
-    # get a list of all the email threads of unread emails
-    logging.info("\n" + "Checking for new unread emails at: " + str(time.strftime("%H:%M:%S")) #23:04:44
-    print("Checking for new unread emails at: " + str(time.strftime("%H:%M:%S")) #23:04:44
-    unreadThreads = ezgmail.unread()
-    numUnreads =  len(unreadThreads)
-    print("Number of Unread Emails: " + str(numUnreads))
-    return(unreadThreads)
+    print("Succesfully initializing email connection.")
 
 def send_email(recipient, subject, body):
     logging.info("Atempting to send email.\n" + "Recipient: " + recipient + "\n" + "Subject: " + subject + "\n" + "Body: " + body)
-    print("Attempting to send and email to:" + recipient)
+    print("Attempting to send and email")
     ezgmail.send(recipient, subject, body)
-    logging.info("Email Sent")
-    print("Email Sent")
-
-def main():
-    # Initialize the program files and email connection
-    init_enviroment()
-    init_ezgmail()
-
-    # Opens up the csv of all tasks
-    task_path = r'C:\YOLOv5\yolov5\Email Automation\task-history.csv'
-    tasks = []
-
-    # Read in the previous tasks in case of a crash
-    with open(task_path,'r') as csv_taskHistory:
-        reader = csv.reader(csv_taskHistory)
-        task = list(reader)
-
-
-if __name__ == '__main__':
-    main()
 
 # Debugging messages allowed
 # logging.debug("debug message")
@@ -78,6 +48,19 @@ if __name__ == '__main__':
 # logging.warning("warning message")
 # logging.error("error message")
 # logging.critical("critical message")
+
+# Initialize the program files and email connection
+init_enviroment()
+init_ezgmail()
+
+# Opens up the csv of all tasks
+task_path = r'C:\YOLOv5\yolov5\Email Automation\task-history.csv'
+tasks = []
+
+# Read in the previous tasks in case of a crash
+with open(task_path,'r') as csv_taskHistory:
+    reader = csv.reader(csv_taskHistory)
+    task = list(reader)
 
 task_history = open(task_path,'w') # 'w+' denotes the file is opened as writeable and create one if it doesn't exist
 write_tasks = csv.writer(task_history)
@@ -92,9 +75,14 @@ print(F"Starting Task Number: {current_task}")
 
 while True:
 
-    queue = Queue()
+    queue = []
+    init_ezgmail()
     # get a list of all the email threads of unread emails
-    unreadThreads = check_inbox()
+    logging.info("Checking for new unread emails.")
+    print("Checking for new unread emails.")
+    unreadThreads = ezgmail.unread()
+    numUnreads =  len(unreadThreads)
+    print("Number of Unread Emails: " + str(numUnreads))
 
     for unread in unreadThreads:
         message = unread.messages
@@ -122,6 +110,24 @@ while True:
                     send_email(sender, F"Task Placed In Queue!", F"Your request to process: \n {section} \n Task has been placed in the queue. \n You will be emailed when it completes.")
                 current_task += 1
                 unread.markAsRead()
+            
+            # Check subject to determine it is an Niche Autocropping task
+            if re.match('niche', str(subject), re.IGNORECASE):
+                print(F"New Unread Niche Autocropping Taskfrom: {sender} Recieved at {timestamp}")
+                logging.info(F"New Unread Niche Autocropping Task from: {sender} Recieved at {timestamp}")
+                section = str(re.findall(r'\A([^\n]+)', str(body))[0]) # Return the first line up to the first \n (newline) character
+                section = str(section.strip()) # remove the chariage return from end of line
+                print(F"Section to niche autocrop: {section}")
+                logging.info(F"Section to niche autocrop: {section}")
+                print(F"Assigned task number: {current_task}")
+                logging.info(F"Assigned task number: {current_task}")
+                new_task = [current_task, 'Niche', sender, section, timestamp]
+                queue.append(new_task)
+                if queue is not None:
+                    # Task has been placed in Queue
+                    send_email(sender, F"Task Placed In Queue!", F"Your request to process: \n {section} \n Task has been placed in the queue. \n You will be emailed when it completes.")
+                current_task += 1
+                unread.markAsRead()
         else:
             continue
 
@@ -130,8 +136,13 @@ while True:
         #send_email(item[2], F"Task Has Begun Processing!", F"Section: \n {item[3]} \n Has begun processing. \n You will be emailed when it completes.")
         print(F"Autocropping: {item[3]}")
         logging.info(F"Autocropping: {item[3]}")
-        command = r'C:\YOLOv5\yolov5\Scripts\python.exe C:\YOLOv5\yolov5\detect_dev.py  --source ' + '"' + item[3] + '"'
-        os.system(command)
+        #if item[2] == 'Autocropping':
+        #    command = r'C:\YOLOv5\yolov5\.venv\Scripts\python.exe C:\YOLOv5\yolov5\detect_dev.py  --source ' + '"' + item[3] + '"'
+        #    os.system(command)
+        if item[2] == 'Niche':
+            command = r'C:\YOLOv5\yolov5\.venv\Scripts\python.exe C:\YOLOv5\yolov5\niche_detect_dev.py  --source ' + '"' + item[3] + '"'
+            print(command)
+            os.system(command)
         send_email(item[2], F"Task Has Completed Succesfully!", F"Section: \n {item[3]} \n Has completed succesfully. \n If you have additional items in the queue you will be emailed separately.")
         completion_time = str(time.strftime("%Y-%m-%d %H:%M:%S")) # 2020-11-02 23:04:44
         item.append(completion_time)
@@ -140,4 +151,4 @@ while True:
     write_tasks.writerows(completed)
     task_history.flush()
 
-    time.sleep(120) # run every # minutes
+    time.sleep(300) # run every # minutes
